@@ -221,6 +221,12 @@ Manuscript submitted for publication.
 
 ---
 
+## License
+
+This project is released under the MIT License. See the `LICENSE` file for details.
+
+---
+
 ## Contact
 
 José Rueda-Llano
