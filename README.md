@@ -49,7 +49,7 @@ pip install -r requirements.txt
 
 ## How to reproduce the simulation study
 
-###1. Generate synthetic economic data and compute envelope-rule decisions
+### 1. Generate synthetic economic data and compute envelope-rule decisions
 
 Run:
 
