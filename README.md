@@ -22,8 +22,7 @@ paper.
 ├── tables/                          # LaTeX tables included in the manuscript
 ├── requirements.txt
 └── README.md
-
-```text
+```
 
 ---
 
@@ -42,120 +41,130 @@ matplotlib
 
 Install dependencies:
 
+```bash
 pip install -r requirements.txt
+```
 
 ---
 
 ## How to reproduce the simulation study
 
-1. Generate synthetic economic data and compute envelope-rule decisions
+###1. Generate synthetic economic data and compute envelope-rule decisions
 
 Run:
 
+```bash
 python dairy_envelope_application.py
+```
 
 This script:
 
-Simulates ten cow cumulative-profit trajectories
+- Simulates ten cow cumulative-profit trajectories
 
-Simulates a baseline heifer benchmark
+- Simulates a baseline heifer benchmark
 
-Constructs a weaker heifer benchmark for sensitivity analysis
+- Constructs a weaker heifer benchmark for sensitivity analysis
 
-Fits cubic surrogate functions
+- Fits cubic surrogate functions
 
-Computes:
+- Computes:
 
-Cow-only optimal ages
+    - Cow-only optimal ages
 
-Switch ages
+    - Switch ages
 
-Average-profit indices
+    - Average-profit indices
 
-Envelope-based optimal ages
+    - Envelope-based optimal ages
 
-Exports the per-cow daily CSVs, scenario summary CSVs, and figures used to build the LaTeX tables in Section 7
+- Exports the per-cow daily CSVs, scenario summary CSVs, and figures used to build the LaTeX tables in Section 7
 
-Outputs are written to:
+    - Outputs are written to:
 
-Baseline scenario:
+        Baseline scenario:
 
-data/S0_baseline/section7_summary_baseline.csv
+            - data/S0_baseline/section7_summary_baseline.csv
 
-data/S0_baseline/01_cow_<id>_daily.csv, …, 10_cow_<id>_daily.csv
+            - data/S0_baseline/01_cow_<id>_daily.csv, …, 10_cow_<id>_daily.csv
 
-data/S0_baseline/01_fig_S0_baseline_cow_<id>.pdf/.png, ...
+            - data/S0_baseline/01_fig_S0_baseline_cow_<id>.pdf/.png, ...
 
-Weaker heifer scenario:
+        Weaker heifer scenario:
 
-data/S1_weaker/section7_summary_weaker.csv
+            - data/S1_weaker/section7_summary_weaker.csv
 
-data/S1_weaker/01_cow_<id>_daily.csv, …
+            - data/S1_weaker/01_cow_<id>_daily.csv, …
 
-data/S1_weaker/01_fig_S1_weaker_cow_<id>.pdf/.png, …
+            - data/S1_weaker/01_fig_S1_weaker_cow_<id>.pdf/.png, …
 
-These files are the input for both the LaTeX tables and the robustness analysis.
+        These files are the input for both the LaTeX tables and the robustness analysis.
 
 
-2. (Optional) Run additional robustness experiments
+### 2. (Optional) Run additional robustness experiments
 
+Run: 
+```bash
 python dairy_envelope_robustness.py
+```
 
 This script:
 
-Reads the per-cow daily CSVs and summary CSVs produced in step 1
-from data/S0_baseline/ and data/S1_weaker/.
+    - Reads the per-cow daily CSVs and summary CSVs produced in step 1
+    from data/S0_baseline/ and data/S1_weaker/.
 
-Applies a battery of small perturbations (e.g., noise on milk,
-margin shifts, benchmark shifts, tail truncation).
+    - Applies a battery of small perturbations (e.g., noise on milk,
+    margin shifts, benchmark shifts, tail truncation).
 
-Recomputes envelope decisions under each perturbation.
+    - Recomputes envelope decisions under each perturbation.
 
-Outputs are written into the same scenario folders under data/, for example:
+    - Outputs are written into the same scenario folders under data/, for example:
 
-data/S0_baseline/sec7_robustness_baseline.csv
+        - data/S0_baseline/sec7_robustness_baseline.csv
 
-data/S0_baseline/sec7_summary_baseline.tex
+        - data/S0_baseline/sec7_summary_baseline.tex
 
-data/S0_baseline/sec7_branch_flips_baseline.tex
+        - data/S0_baseline/sec7_branch_flips_baseline.tex
 
-data/S0_baseline/sec7_diagnostics_baseline.(pdf|png)
+        - data/S0_baseline/sec7_diagnostics_baseline.(pdf|png)
 
-data/S0_baseline/sec7_fliprates_baseline.(pdf|png)
+        - data/S0_baseline/sec7_fliprates_baseline.(pdf|png)
 
-and analogously for S1_weaker. These files support the robustness discussion and
-can be supplied as supplementary material. They are not needed to regenerate
-the main tables.
+    and analogously for S1_weaker. These files support the robustness discussion and
+    can be supplied as supplementary material. They are not needed to regenerate
+    the main tables.
 
 
-3. Build LaTeX tables 
+### 3. Build LaTeX tables 
 
+Run:
+```bash
 python dairy_envelope_tables.py
+```
 
 This script:
 
-Loads:
+    - Loads:
 
-data/S0_baseline/section7_summary_baseline.csv
+        - data/S0_baseline/section7_summary_baseline.csv
 
-data/S1_weaker/section7_summary_weaker.csv
+        - data/S1_weaker/section7_summary_weaker.csv
 
-Constructs the tables used in the manuscript (per-cow tables, summary statistics,
-and the baseline–weaker comparison).
+    - Constructs the tables used in the manuscript (per-cow tables, summary statistics,
+    and the baseline–weaker comparison).
 
-Outputs are written to the tables/ directory:
+    - Outputs are written to the tables/ directory:
 
-tables/table_section7_percow_baseline.tex
+        - tables/table_section7_percow_baseline.tex
 
-tables/table_section7_percow_weaker.tex
+        - tables/table_section7_percow_weaker.tex
 
-tables/table_section7_summary_baseline.tex
+        - tables/table_section7_summary_baseline.tex
 
-tables/table_section7_summary_weaker.tex
+        - tables/table_section7_summary_weaker.tex
 
-tables/table_section7_scenarios_compare.tex
+        - tables/table_section7_scenarios_compare.tex
 
-These can be included directly in the LaTeX source via \input{...}.
+    These can be included directly in the LaTeX source via \input{...}.
 
 ---
 
@@ -166,13 +175,13 @@ replacement rule. No real farm data are used.
 
 The economic components reflect stylized dairy economics:
 
-Milk revenue net of variable feed costs.
+    - Milk revenue net of variable feed costs.
 
-Lactation curves with parity effects and a unimodal peak structure.
+    - Lactation curves with parity effects and a unimodal peak structure.
 
-Maintenance and stall fixed costs.
+    - Maintenance and stall fixed costs.
 
-Heifer rearing cost and salvage value at replacement.
+    - Heifer rearing cost and salvage value at replacement.
 
 The code uses explicit random seeds so that, with the same Python and package
 versions, results are reproducible.
@@ -184,9 +193,9 @@ versions, results are reproducible.
 All data required to reproduce the simulation results are generated by
 dairy_envelope_application.py and stored under:
 
-data/S0_baseline/
+    - data/S0_baseline/
 
-data/S1_weaker/
+    - data/S1_weaker/
 
 No external datasets are required.
 
