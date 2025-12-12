@@ -1,0 +1,6 @@
+# Core scientific stack
+numpy==1.26.4
+pandas==2.2.2
+
+# Plotting
+matplotlib==3.8.4
