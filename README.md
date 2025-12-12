@@ -13,6 +13,7 @@ paper.
 
 ## Repository structure
 
+```text
 .
 ├── dairy_envelope_application.py    # Main simulation + baseline and weaker heifer scenarios
 ├── dairy_envelope_robustness.py     # Optional robustness experiments
@@ -21,6 +22,7 @@ paper.
 ├── tables/                          # LaTeX tables included in the manuscript
 ├── requirements.txt
 └── README.md
+
 
 ---
 
